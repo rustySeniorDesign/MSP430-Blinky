@@ -1,0 +1,3 @@
+[submodule "msp430fr2x5x-hal"]
+	path = msp430fr2x5x-hal
+	url = git@github.com:YuhanLiin/msp430fr2x5x-hal.git
