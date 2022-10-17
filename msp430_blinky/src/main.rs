@@ -4,7 +4,7 @@
 use embedded_hal::digital::v2::*;
 use msp430_rt::entry;
 use msp430fr2x5x_hal::{gpio::Batch, pmm::Pmm, watchdog::Wdt};
-use panic_msp430 as _;
+mod panic;
 
 // Red onboard LED should blink at a steady period.
 // Green onboard LED should go on when P2.3 button is pressed
