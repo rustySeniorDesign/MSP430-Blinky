@@ -4,13 +4,17 @@
 use embedded_hal::digital::v2::*;
 use msp430_rt::entry;
 use msp430fr2x5x_hal::{gpio::Batch, pmm::Pmm, watchdog::Wdt};
+// use panic_msp430 as _;
+use msp430fr2355::Peripherals;
 mod panic;
 
 // Red onboard LED should blink at a steady period.
 // Green onboard LED should go on when P2.3 button is pressed
 #[entry]
-fn main() -> ! {
-    let periph = msp430fr2355::Peripherals::take().unwrap();
+unsafe fn main() -> ! {
+    // let periph = Peripherals::take().unwrap();   // TODO: only possible with critical section feature, but there are build errors
+    let periph = Peripherals::conjure();
+
     let _wdt = Wdt::constrain(periph.WDT_A);
 
     let pmm = Pmm::new(periph.PMM);

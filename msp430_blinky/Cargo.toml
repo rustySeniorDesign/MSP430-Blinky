@@ -8,18 +8,24 @@ edition = "2021"
 [dependencies]
 msp430 = "0.4.0"
 msp430-rt = "0.4.0"
-
-[dependencies.msp430fr2x5x-hal]
-path = "../msp430fr2x5x-hal"
-
-[dependencies.embedded-hal]
-version = "0.2.3"
-features = ["unproven"]
+panic-msp430 = "0.4.0"
+embedded-hal = { version = "0.2.7", features = ["unproven"] }
+msp430fr2x5x-hal = { path = "../msp430fr2x5x-hal" }
 
 [dependencies.msp430fr2355]
-path = "../msp430fr2355"
-version = "0.4.2"
 features = ["rt"]
+# features = ["rt", "critical-section"] # critical-section gives build errors
+path = "../msp430fr2355"
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+opt-level = "z"
+
+[profile.dev]
+opt-level = "s"
+codegen-units = 1
+debug = true
 
 [profile.dev.package."*"]
 opt-level = "z"
