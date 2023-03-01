@@ -3,7 +3,7 @@
 
 use embedded_hal::digital::v2::*;
 use msp430_rt::entry;
-use msp430fr2x5x_hal::{gpio::Batch, pmm::Pmm, watchdog::Wdt, adc::Adc};
+use msp430fr2x5x_hal::{adc::Adc, gpio::Batch, pmm::Pmm, watchdog::Wdt};
 // use panic_msp430 as _;
 use msp430fr2355::Peripherals;
 mod panic;
@@ -30,10 +30,22 @@ unsafe fn main() -> ! {
     let p2_3 = p2.pin3;
     let mut p6_6 = p6.pin6;
 
-    let adc = Adc::new(periph.ADC);
-    
+    // let adc = Adc::new(periph.ADC);
+    // adc.adc_init();
+    // adc.adc_set_pin(5);
+    // adc.adc_enable();
 
     loop {
+        // adc.adc_start_conversion();
+        // while adc.adc_is_busy() {}
+        // let result = adc.adc_get_result();
+
+        // if result < 128 {
+        //     p6_6.set_high().ok();
+        // } else {
+        //     p6_6.set_low().ok();
+        // }
+
         p1_0.toggle().ok();
 
         for _ in 0..5000 {
@@ -45,27 +57,3 @@ unsafe fn main() -> ! {
         }
     }
 }
-
-// fn adc_init() {
-
-// }
-
-// fn adc_set_pin(pin: u8) {
-
-// }
-
-// fn adc_enable() {
-
-// }
-
-// fn adc_start_conversion() {
-
-// }
-
-// fn adc_is_busy() -> bool {
-
-// }
-
-// fn adc_get_result() -> u16 {
-
-// }
