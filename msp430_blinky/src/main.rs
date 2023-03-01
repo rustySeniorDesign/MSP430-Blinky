@@ -57,3 +57,8 @@ unsafe fn main() -> ! {
         }
     }
 }
+
+#[no_mangle]
+extern "C" fn abort() -> ! {
+    panic!();
+}
