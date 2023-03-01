@@ -3,7 +3,7 @@
 
 use embedded_hal::digital::v2::*;
 use msp430_rt::entry;
-use msp430fr2x5x_hal::{gpio::Batch, pmm::Pmm, watchdog::Wdt};
+use msp430fr2x5x_hal::{gpio::Batch, pmm::Pmm, watchdog::Wdt, adc::Adc};
 // use panic_msp430 as _;
 use msp430fr2355::Peripherals;
 mod panic;
@@ -30,6 +30,9 @@ unsafe fn main() -> ! {
     let p2_3 = p2.pin3;
     let mut p6_6 = p6.pin6;
 
+    let adc = Adc::new(periph.ADC);
+    
+
     loop {
         p1_0.toggle().ok();
 
@@ -42,3 +45,27 @@ unsafe fn main() -> ! {
         }
     }
 }
+
+// fn adc_init() {
+
+// }
+
+// fn adc_set_pin(pin: u8) {
+
+// }
+
+// fn adc_enable() {
+
+// }
+
+// fn adc_start_conversion() {
+
+// }
+
+// fn adc_is_busy() -> bool {
+
+// }
+
+// fn adc_get_result() -> u16 {
+
+// }
